@@ -6,7 +6,7 @@ SCC <- readRDS("Source_Classification_Code.rds")
 df <- aggregate(Emissions ~ year, subset=(NEI$fips == 24510), NEI, sum)
 
 # Plot the graph
-plot(df, xlab="Year", ylab="Total PM2.5 Emissions, Tons", main="Total Emissions for Baltimore County")
+plot(df, xlab="Year", ylab="Total PM2.5 Emissions, Tons", main="Total Emissions for Baltimore City")
 lines(df)
 
 # Copy graph to png file
