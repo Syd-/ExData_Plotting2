@@ -3,6 +3,7 @@ NEI <- readRDS("summarySCC_PM25.rds")
 SCC <- readRDS("Source_Classification_Code.rds")
 
 # Group and Aggregate the data
+library("plyr")
 baltimore <- NEI[NEI$fips == 24510, ]
 baltimore <- ddply(baltimore, .(year,type), summarize, totalEmissions = sum(Emissions))
 
