@@ -13,7 +13,7 @@ citiesMotorSubset[citiesMotorSubset$fips == "06037", ]$fips = "Los Angeles Count
 
 # Plot the graph
 library("ggplot2")
-ggplot(citiesMotorSubset, aes(year, totalEmissions, group=fips, color=fips)) + geom_point() + geom_line() + labs(x="Year", y="Total PM2.5 Emissions, Tons", title="Total PM2.5 Emissions for Baltimore city")
+ggplot(citiesMotorSubset, aes(year, totalEmissions, group=fips, color=fips)) + geom_point() + geom_line() + labs(x="Year", y="Total PM2.5 Emissions, Tons", title="Total PM2.5 Emissions for 24510 and 06037") + theme(legend.title=element_blank())
 
 # Copy graph to png file
 dev.copy(png, file="plot6.png", height=480, width=480)
