@@ -5,9 +5,13 @@ SCC <- readRDS("Source_Classification_Code.rds")
 # Group and Aggregate the data
 library("plyr")
 citiesSubset <- NEI[(NEI$fips == "24510" | NEI$fips == "06037"), ]
-motorSCC <- SCC[grepl('motor', SCC$Short.Name, ignore.case=TRUE), ]
+# In the EI.Sector, "Vehicle" is a road vehicle.
+# "mobile" refers to non-road vehicles, apparently.
+motorSCC <- SCC[grepl('vehicle', SCC$EI.Sector, ignore.case=TRUE), ]
+# Subset
 citiesMotorSubset <- subset(citiesSubset, subset = (citiesSubset$SCC %in% motorSCC$SCC))
 citiesMotorSubset <- ddply(citiesMotorSubset, .(year, fips), summarize, totalEmissions = sum(Emissions))
+# Rename
 citiesMotorSubset[citiesMotorSubset$fips == "24510", ]$fips = "Baltimore City"
 citiesMotorSubset[citiesMotorSubset$fips == "06037", ]$fips = "Los Angeles County"
 

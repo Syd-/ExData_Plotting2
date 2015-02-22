@@ -4,7 +4,9 @@ SCC <- readRDS("Source_Classification_Code.rds")
 
 # Group and Aggregate the data
 baltimore <- NEI[NEI$fips == 24510, ]
-motorSCC <- SCC[grepl('motor', SCC$Short.Name, ignore.case=TRUE), ]
+# In the EI.Sector, "Vehicle" is a road vehicle.
+# "mobile" refers to non-road vehicles, apparently.
+motorSCC <- SCC[grepl('vehicle', SCC$EI.Sector, ignore.case=TRUE), ]
 baltimoreMotor <- aggregate(Emissions ~ year, subset = (baltimore$SCC %in% motorSCC$SCC), baltimore, sum)
 
 # Plot the graph
